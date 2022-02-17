@@ -24,7 +24,7 @@ namespace MacLibrary.Controllers
 
 
             string connStr = "server=localhost;user=root;database=world;port=3306;password=SeaBassMac@MySQL";
-            MySqlConnection conn = new MySqlConnection(connStr);
+            MySqlConnection conn = new (connStr);
 
             //using (MySqlConnection con = new MySqlConnection("server=localhost;user=root;database=library_database;port=3306;password=SeaBassMac@MySQL"))
             //{
@@ -44,11 +44,11 @@ namespace MacLibrary.Controllers
                 //MySqlDataReader rdr = cmd.ExecuteReader();
 
                 String sqlInsert = "Insert Into Country (Name, HeadOfState, Continent) Values ('Disneyland', 'Mickey Mouse', 'North America')";
-                MySqlCommand cmdInsert = new MySqlCommand(sqlInsert, conn);
+                MySqlCommand cmdInsert = new (sqlInsert, conn);
                 cmdInsert.ExecuteNonQuery();
 
                 String sqlScalar = "SELECT COUNT(*) FROM Country";
-                MySqlCommand cmdScalar = new MySqlCommand(sqlScalar, conn);
+                MySqlCommand cmdScalar = new (sqlScalar, conn);
                 object result = cmdScalar.ExecuteScalar();
                 if(result == null)
                 {
