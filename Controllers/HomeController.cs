@@ -39,20 +39,21 @@ namespace MacLibrary.Controllers
                 conn.Open();
                 //Perform database operations
 
-                //String sql = "Select Name, HeadOfState From Country Where Continent = 'Oceania'"
+                String sql = "Select Name, HeadOfState From Country Where Continent = 'Oceania'";
                 //MySqlCommand cmd = new MySqlCommand(sql, conn);
                 //MySqlDataReader rdr = cmd.ExecuteReader();
 
                 String sqlInsert = "Insert Into Country (Name, HeadOfState, Continent) Values ('Disneyland', 'Mickey Mouse', 'North America')";
-                MySqlCommand cmdInsert = new (sqlInsert, conn);
-                cmdInsert.ExecuteNonQuery();
+                //MySqlCommand cmdInsert = new (sqlInsert, conn);
+                //cmdInsert.ExecuteNonQuery();
 
                 String sqlScalar = "SELECT COUNT(*) FROM Country";
                 MySqlCommand cmdScalar = new (sqlScalar, conn);
                 object result = cmdScalar.ExecuteScalar();
-                if(result == null)
+                if(result != null)
                 {
-
+                    int r = Convert.ToInt32(result);
+                    Console.WriteLine("Number of countries in the world database is " + r);
                 }
 
                 //while (rdr.Read())
