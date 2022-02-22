@@ -23,5 +23,10 @@ namespace MacLibrary.Controllers
         {
             return "This is the Welcome action method...";
         }
+
+        public IActionResult Account()
+        {
+            return View();
+        }
     }
 }
