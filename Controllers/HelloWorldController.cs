@@ -11,7 +11,6 @@ namespace MacLibrary.Controllers
 
         public IActionResult Index()
         {
-            
 
             return View();
         }
@@ -19,9 +18,11 @@ namespace MacLibrary.Controllers
         // 
         // GET: /HelloWorld/Welcome/ 
 
-        public string Welcome()
+        public string Welcome(string name, int ID = 12)
         {
-            return "This is the Welcome action method...";
+
+            return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+            //return "This is the Welcome action method...";
         }
 
         public IActionResult Account()
