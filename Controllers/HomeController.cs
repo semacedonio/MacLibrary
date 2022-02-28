@@ -12,12 +12,12 @@ namespace MacLibrary.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    //_logger = logger;
+        //}
 
         public IActionResult Index()
         {
@@ -39,11 +39,11 @@ namespace MacLibrary.Controllers
                 conn.Open();
                 //Perform database operations
 
-                String sql = "Select Name, HeadOfState From Country Where Continent = 'Oceania'";
+                //String sql = "Select Name, HeadOfState From Country Where Continent = 'Oceania'";
                 //MySqlCommand cmd = new MySqlCommand(sql, conn);
                 //MySqlDataReader rdr = cmd.ExecuteReader();
 
-                String sqlInsert = "Insert Into Country (Name, HeadOfState, Continent) Values ('Disneyland', 'Mickey Mouse', 'North America')";
+                //String sqlInsert = "Insert Into Country (Name, HeadOfState, Continent) Values ('Disneyland', 'Mickey Mouse', 'North America')";
                 //MySqlCommand cmdInsert = new (sqlInsert, conn);
                 //cmdInsert.ExecuteNonQuery();
 
