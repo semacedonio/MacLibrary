@@ -10,7 +10,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MySql.Data" Version="8.0.28" />
-    <PackageReference Include="MySqlConnector" Version="2.1.5" />
+    <PackageReference Include="MySqlConnector" Version="2.1.7" />
   </ItemGroup>
 
 </Project>
