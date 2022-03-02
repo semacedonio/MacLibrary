@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 
 namespace MacLibrary.Controllers
 {
@@ -24,12 +25,14 @@ namespace MacLibrary.Controllers
 
 
             string connStr = "server=localhost;user=root;database=world;port=3306;password=SeaBassMac@MySQL";
+            //string libraryDbString = "server=localhost;user=root;database=library_database;port=3306;password=SeaBassMac@MySQL";
+
             MySqlConnection conn = new (connStr);
 
-            //using (MySqlConnection con = new MySqlConnection("server=localhost;user=root;database=library_database;port=3306;password=SeaBassMac@MySQL"))
-            //{
-            //    MySqlCommand cmd = new MySqlCommand("select * from users", con);
-            //}
+            using (MySqlConnection con = new ("server=localhost;user=root;database=library_database;port=3306;password=SeaBassMac@MySQL"))
+            {
+                MySqlCommand cmd = new ("select * from users", con);
+            }
 
             Console.WriteLine("Hello World!");
 
@@ -67,6 +70,11 @@ namespace MacLibrary.Controllers
                 Console.WriteLine("Try Again.");
                 Console.WriteLine(ex.ToString());
             }
+
+            //Data Set Object
+            //DataSet dsCountry;
+            //dsCountry = new DataSet();
+
             conn.Close();
             Console.WriteLine("Done.");
 
