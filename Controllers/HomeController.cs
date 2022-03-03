@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
+using System.Data;
 //using MySql.Data.dll;
 
 namespace MacLibrary.Controllers
@@ -63,6 +65,21 @@ namespace MacLibrary.Controllers
                     int r = Convert.ToInt32(result);
                     Console.WriteLine("Number of countries in the world database is " + r);
                 }
+
+                //6.1.3 Working with Decoupled Data
+                MySqlDataAdapter daCountry;
+                string sql = "SELECT Code, Name, HeadOfState FROM country WHERE continent='North America'";
+                daCountry = new MySqlDataAdapter(sql, conn);
+
+                MySqlCommandBuilder cb = new MySqlCommandBuilder(daCountry);
+
+                DataSet dsCountry;
+
+                dsCountry = new DataSet();
+                //Filling Data Set
+                daCountry.Fill(dsCountry, "Country");
+                //Updating Data Set
+                daCountry.Update(dsCountry, "Country");
 
                 //while (rdr.Read())
                 //{
