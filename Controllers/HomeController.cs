@@ -50,6 +50,12 @@ namespace MacLibrary.Controllers
                 //MySqlCommand cmd = new MySqlCommand(sql, conn);
                 //MySqlDataReader rdr = cmd.ExecuteReader();
 
+                //while (rdr.Read())
+                //{
+                //    Console.WriteLine(rdr[0] + " -- " + rdr[1]);
+                //}
+                //rdr.Close();
+
                 //MySQLCommand Object Tutorial - ExecuteNonQuery
                 //String sqlInsert = "Insert Into Country (Name, HeadOfState, Continent) Values ('Disneyland', 'Mickey Mouse', 'North America')";
                 //MySqlCommand cmdInsert = new (sqlInsert, conn);
@@ -81,11 +87,6 @@ namespace MacLibrary.Controllers
                 //Updating Data Set
                 daCountry.Update(dsCountry, "Country");
 
-                //while (rdr.Read())
-                //{
-                //    Console.WriteLine(rdr[0] + " -- " + rdr[1]);
-                //}
-                //rdr.Close();
             }
             catch (Exception ex)
             {
