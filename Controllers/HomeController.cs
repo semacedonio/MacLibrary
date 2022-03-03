@@ -77,7 +77,7 @@ namespace MacLibrary.Controllers
                 string sql = "SELECT Code, Name, HeadOfState FROM country WHERE continent='North America'";
                 daCountry = new MySqlDataAdapter(sql, conn);
 
-                MySqlCommandBuilder cb = new MySqlCommandBuilder(daCountry);
+                MySqlCommandBuilder cb = new (daCountry);
 
                 DataSet dsCountry;
 
