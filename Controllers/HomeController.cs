@@ -92,7 +92,7 @@ namespace MacLibrary.Controllers
                 //6.1.4 Working with parameters
                 string sql = "Select Name, HeadOfState From Country Where Continent = @Continent";
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlCommand cmd = new (sql, conn);
                 Console.WriteLine("Enter a continent e.g. 'Europe', 'North America' etc.:");
                 string user_input = Console.ReadLine();
                 cmd.Parameters.AddWithValue("@Continent", "North America");
