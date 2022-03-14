@@ -9,7 +9,7 @@ public class Tutorial1
     public static void Main2()
     {
         string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
-        MySqlConnection conn = new MySqlConnection(connStr);
+        MySqlConnection conn = new (connStr);
         try
         {
             Console.WriteLine("Connecting to MySQL...");

@@ -89,19 +89,19 @@ namespace MacLibrary.Controllers
 
                 //Console.WriteLine("dsCountry: " + dsCountry);   
 
-                //6.1.4 Working with parameters
-                string sql = "Select Name, HeadOfState From Country Where Continent = @Continent";
+                ////6.1.4 Working with parameters
+                //string sql = "Select Name, HeadOfState From Country Where Continent = @Continent";
 
-                MySqlCommand cmd = new (sql, conn);
-                Console.WriteLine("Enter a continent e.g. 'Europe', 'North America' etc.:");
-                string user_input = Console.ReadLine();
-                cmd.Parameters.AddWithValue("@Continent", "North America");
-                MySqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    Console.WriteLine(rdr["Name"] + "---" + rdr["HeadOfState"]);
-                }
-                rdr.Close();
+                //MySqlCommand cmd = new (sql, conn);
+                //Console.WriteLine("Enter a continent e.g. 'Europe', 'North America' etc.:");
+                //string user_input = Console.ReadLine();
+                //cmd.Parameters.AddWithValue("@Continent", "North America");
+                //MySqlDataReader rdr = cmd.ExecuteReader();
+                //while (rdr.Read())
+                //{
+                //    Console.WriteLine(rdr["Name"] + "---" + rdr["HeadOfState"]);
+                //}
+                //rdr.Close();
 
             }
             catch (Exception ex)
