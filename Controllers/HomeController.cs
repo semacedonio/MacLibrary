@@ -2,14 +2,18 @@
 using Microsoft.Extensions.Logging;
 using MacLibrary.Models;
 using System;
+using System.Drawing;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
 using System.Data;
+//using System.Windows.Forms;
 //using MySql.Data.dll;
 
 namespace MacLibrary.Controllers
@@ -81,25 +85,26 @@ namespace MacLibrary.Controllers
                 if (dbResult != null)
                 {
                     int r = Convert.ToInt32(dbResult);
-                    Console.WriteLine("Library Databse: " + dbResult);
-                } 
+                    Console.WriteLine("Library Database: " + dbResult);
+                }
 
-                ////6.1.3 Working with Decoupled Data
-                //MySqlDataAdapter daCountry;
-                //string sql = "SELECT Code, Name, HeadOfState FROM country WHERE continent='North America'";
-                //daCountry = new MySqlDataAdapter(sql, conn);
+                //6.1.3 Working with Decoupled Data
+                MySqlDataAdapter daCountry;
+                string sql = "SELECT Code, Name, HeadOfState FROM country WHERE continent='North America'";
+                daCountry = new MySqlDataAdapter(sql, conn);
 
-                //MySqlCommandBuilder cb = new (daCountry);
+                MySqlCommandBuilder cb = new(daCountry);
 
-                //DataSet dsCountry;
+                DataSet dsCountry;
 
-                //dsCountry = new DataSet();
-                ////Filling Data Set
-                //daCountry.Fill(dsCountry, "Country");
-                ////Updating Data Set
-                //daCountry.Update(dsCountry, "Country");
+                dsCountry = new DataSet();
+                //Filling Data Set
+                daCountry.Fill(dsCountry, "Country");
+                //dataGridView1.
+                //Updating Data Set
+                daCountry.Update(dsCountry, "Country");
 
-                //Console.WriteLine("dsCountry: " + dsCountry);   
+                Console.WriteLine("dsCountry: " + dsCountry);
 
                 ////6.1.4 Working with parameters
                 //string sql = "Select Name, HeadOfState From Country Where Continent = @Continent";
