@@ -26,15 +26,15 @@ namespace MacLibrary.Controllers
         public IActionResult Index()
         {
 
-
             string connStr = "server=localhost;user=root;database=world;port=3306;password=SeaBassMac@MySQL";
             //string libraryDbString = "server=localhost;user=root;database=library_database;port=3306;password=SeaBassMac@MySQL";
 
             MySqlConnection conn = new (connStr);
+            MySqlConnection conn_library_database = new("server=localhost;user=root;database=library_database;port=3306;password=SeaBassMac@MySQL");
 
             using (MySqlConnection con = new ("server=localhost;user=root;database=library_database;port=3306;password=SeaBassMac@MySQL"))
             {
-                MySqlCommand cmd = new ("select * from users", con);
+                MySqlCommand cmd_library_database = new ("select * from users", con);
             }
 
             Console.WriteLine("Hello World!");
@@ -43,6 +43,7 @@ namespace MacLibrary.Controllers
             {
                 Console.WriteLine("Connecting to database...");
                 conn.Open();
+                conn_library_database.Open();
                 //Perform database operations
 
                 //MySQLCommand Object Tutorial - ExecuteReader
@@ -66,11 +67,22 @@ namespace MacLibrary.Controllers
                 String sqlScalar = "SELECT COUNT(*) FROM Country";
                 MySqlCommand cmdScalar = new (sqlScalar, conn);
                 object result = cmdScalar.ExecuteScalar();
-                if(result != null)
+
+                MySqlCommand cmd_library_database = new("SELECT COUNT(*) FROM users", conn_library_database);
+                object dbResult = cmd_library_database.ExecuteScalar();
+
+
+                if (result != null)
                 {
                     int r = Convert.ToInt32(result);
                     Console.WriteLine("Number of countries in the world database is " + r);
                 }
+
+                if (dbResult != null)
+                {
+                    int r = Convert.ToInt32(dbResult);
+                    Console.WriteLine("Library Databse: " + dbResult);
+                } 
 
                 ////6.1.3 Working with Decoupled Data
                 //MySqlDataAdapter daCountry;
@@ -117,7 +129,10 @@ namespace MacLibrary.Controllers
             conn.Close();
             Console.WriteLine("Done.");
 
-                return View();
+            conn_library_database.Close();
+            Console.WriteLine("Done Library Database.");
+
+            return View();
         }
 
         public IActionResult About()

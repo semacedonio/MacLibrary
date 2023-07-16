@@ -4,23 +4,27 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-public class Tutorial1
+
+namespace MacLibrary
 {
-    public static void Main2()
+    public class Tutorial1
     {
-        string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
-        MySqlConnection conn = new (connStr);
-        try
+        public static void Main2()
         {
-            Console.WriteLine("Connecting to MySQL...");
-            conn.Open();
-            // Perform database operations
+            string connStr = "server=localhost;user=root;database=world;port=3306;password=******";
+            MySqlConnection conn = new(connStr);
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+                // Perform database operations
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            conn.Close();
+            Console.WriteLine("Done.");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        conn.Close();
-        Console.WriteLine("Done.");
     }
 }
