@@ -2,14 +2,20 @@
 using Microsoft.Extensions.Logging;
 using MacLibrary.Models;
 using System;
+using System.Drawing;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+
+using System.Data;
+using System.Windows;
+//using System.Windows.Forms;//Check what technologies are used; verions of VS and .NET
 
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
-using System.Data;
 //using MySql.Data.dll;
 
 namespace MacLibrary.Controllers
@@ -41,12 +47,12 @@ namespace MacLibrary.Controllers
 
             try
             {
-                Console.WriteLine("Connecting to database...");
+                Console.WriteLine("Connecting to MySQL database...");
                 conn.Open();
                 conn_library_database.Open();
                 //Perform database operations
 
-                //MySQLCommand Object Tutorial - ExecuteReader
+                //6.1.2 The MySQLCommand Object 
                 //String sql = "Select Name, HeadOfState From Country Where Continent = 'Oceania'";
                 //MySqlCommand cmd = new MySqlCommand(sql, conn);
                 //MySqlDataReader rdr = cmd.ExecuteReader();
@@ -64,42 +70,51 @@ namespace MacLibrary.Controllers
 
 
                 //MySQLCommand Object Tutorial - ExecuteScalar
-                String sqlScalar = "SELECT COUNT(*) FROM Country";
-                MySqlCommand cmdScalar = new (sqlScalar, conn);
-                object result = cmdScalar.ExecuteScalar();
+                //String sql = "SELECT COUNT(*) FROM Country";
+                
+                //object result = cmd.ExecuteScalar();
 
                 MySqlCommand cmd_library_database = new("SELECT COUNT(*) FROM users", conn_library_database);
                 object dbResult = cmd_library_database.ExecuteScalar();
 
 
-                if (result != null)
-                {
-                    int r = Convert.ToInt32(result);
-                    Console.WriteLine("Number of countries in the world database is " + r);
-                }
+                //if (result != null)
+                //{
+                //    int r = Convert.ToInt32(result);
+                //    Console.WriteLine("Number of countries in the world database is " + r);
+                //}
 
-                if (dbResult != null)
-                {
-                    int r = Convert.ToInt32(dbResult);
-                    Console.WriteLine("Library Databse: " + dbResult);
-                } 
+                //if (dbResult != null)
+                //{
+                //    int r = Convert.ToInt32(dbResult);
+                //    Console.WriteLine("Library Database Number of users: " + dbResult);
+                //}
 
-                ////6.1.3 Working with Decoupled Data
+                //6.1.3 Working with Decoupled Data
                 //MySqlDataAdapter daCountry;
-                //string sql = "SELECT Code, Name, HeadOfState FROM country WHERE continent='North America'";
+                string sql = "SELECT Name, HeadOfState FROM Country WHERE Continent=@Continent";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                Console.WriteLine("Enter a continent, e.g. Africa, Antarctica, Asia, Europe, North America, Oceania, South America");
+                String userInput = Console.ReadLine();
+
+                //6.1.4 Working with Parameters
+                cmd.Parameters.AddWithValue("@Continent", userInput);
+
                 //daCountry = new MySqlDataAdapter(sql, conn);
 
-                //MySqlCommandBuilder cb = new (daCountry);
+                //MySqlCommandBuilder cb = new(daCountry);
 
                 //DataSet dsCountry;
 
                 //dsCountry = new DataSet();
-                ////Filling Data Set
+                //Filling Data Set
                 //daCountry.Fill(dsCountry, "Country");
-                ////Updating Data Set
+                //dataGridView1.
+                //Updating Data Set
                 //daCountry.Update(dsCountry, "Country");
 
-                //Console.WriteLine("dsCountry: " + dsCountry);   
+                //Console.WriteLine("dsCountry: " + dsCountry);
 
                 ////6.1.4 Working with parameters
                 //string sql = "Select Name, HeadOfState From Country Where Continent = @Continent";
@@ -108,12 +123,12 @@ namespace MacLibrary.Controllers
                 //Console.WriteLine("Enter a continent e.g. 'Europe', 'North America' etc.:");
                 //string user_input = Console.ReadLine();
                 //cmd.Parameters.AddWithValue("@Continent", "North America");
-                //MySqlDataReader rdr = cmd.ExecuteReader();
-                //while (rdr.Read())
-                //{
-                //    Console.WriteLine(rdr["Name"] + "---" + rdr["HeadOfState"]);
-                //}
-                //rdr.Close();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Console.WriteLine(reader["Name"] + "---" + reader["HeadOfState"]);
+                }
+                reader.Close();
 
             }
             catch (Exception ex)
