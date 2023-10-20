@@ -92,14 +92,14 @@ namespace MacLibrary.Controllers
 
                 //6.1.3 Working with Decoupled Data
                 //MySqlDataAdapter daCountry;
-                string sql = "SELECT Name, HeadOfState FROM Country WHERE Continent=@Continent";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                //string sql = "SELECT Name, HeadOfState FROM Country WHERE Continent=@Continent";
+                //MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                 Console.WriteLine("Enter a continent, e.g. Africa, Antarctica, Asia, Europe, North America, Oceania, South America");
                 String userInput = Console.ReadLine();
 
                 //6.1.4 Working with Parameters
-                cmd.Parameters.AddWithValue("@Continent", userInput);
+                //cmd.Parameters.AddWithValue("@Continent", userInput);
 
                 //daCountry = new MySqlDataAdapter(sql, conn);
 
@@ -117,12 +117,12 @@ namespace MacLibrary.Controllers
                 //Console.WriteLine("dsCountry: " + dsCountry);
 
                 ////6.1.4 Working with parameters
-                //string sql = "Select Name, HeadOfState From Country Where Continent = @Continent";
+                string sql = "Select Name, HeadOfState From Country Where Continent = @Continent";
 
-                //MySqlCommand cmd = new (sql, conn);
-                //Console.WriteLine("Enter a continent e.g. 'Europe', 'North America' etc.:");
-                //string user_input = Console.ReadLine();
-                //cmd.Parameters.AddWithValue("@Continent", "North America");
+                MySqlCommand cmd = new(sql, conn);
+                Console.WriteLine("Enter a continent e.g. 'Europe', 'North America' etc.:");
+                string user_input = Console.ReadLine();
+                cmd.Parameters.AddWithValue("@Continent", "North America");
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
