@@ -24,7 +24,7 @@ namespace MacLibrary
                 Console.WriteLine(ex.ToString());
             }
             conn.Close();
-            Console.WriteLine("Done.");
+            Console.WriteLine("Done. MySqlConnection.");
         }
     }
 }

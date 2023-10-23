@@ -95,8 +95,8 @@ namespace MacLibrary.Controllers
                 //string sql = "SELECT Name, HeadOfState FROM Country WHERE Continent=@Continent";
                 //MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                Console.WriteLine("Enter a continent, e.g. Africa, Antarctica, Asia, Europe, North America, Oceania, South America");
-                String userInput = Console.ReadLine();
+                //Console.WriteLine("Enter a continent, e.g. Africa, Antarctica, Asia, Europe, North America, Oceania, South America");
+                //String userInput = Console.ReadLine();
 
                 //6.1.4 Working with Parameters
                 //cmd.Parameters.AddWithValue("@Continent", userInput);

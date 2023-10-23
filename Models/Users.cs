@@ -16,11 +16,11 @@ namespace MacLibrary.Models
 {
     public class Users
     {
-        ////MySql.Data libraryDb = new MySql.Data;
-        //public int Id { get; set; }
-        //public String firstName { get; set; }
-        //public String lastName { get; set; }
-        //public int phone { get; set; }
-        //public String email { get; set; }
+        //MySql.Data libraryDb = new MySql.Data;
+        public int Id { get; set; }
+        public String firstName { get; set; }
+        public String lastName { get; set; }
+        public int phone { get; set; }
+        public String email { get; set; }
     }
 }
